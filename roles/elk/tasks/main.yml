@@ -18,7 +18,9 @@
   sudo: yes
   command: 'curl -X PUT -d@/etc/marathon/apps/{{ item }}.json -H "Content-Type: application/json" http://localhost:18080/v2/apps/{{ item }}'
   changed_when: false
-  failed_when: "'deploymentId' not in result.stdout"
+  failed_when: >
+    'deploymentId' not in result.stdout
+    and "App is locked by one or more deployments" not in result.stderr
   register: result
   with_items:
     - elasticsearch

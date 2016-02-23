@@ -24,7 +24,7 @@
   "env": {
     "JAVA_OPTS": "-Xms32m -Xmx256m"
   },
-  "ports": [{{ framework_ui_port }}],
+  "ports": [{{ framework_ui_port }}, 9200, 4000],
   "requirePorts": true,
   "labels": {
     "traefik.enable": "false"

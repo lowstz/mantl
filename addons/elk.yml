@@ -9,3 +9,13 @@
 - hosts: role=control
   roles:
     - elk
+
+- hosts: all
+  vars:
+    heka_output: elasticsearch
+    heka_elasticsearch_output:
+      message_matcher: "TRUE"
+      server: "http://elasticsearch.service.consul:4000"
+      flush_interval: 30
+  roles:
+    - heka
